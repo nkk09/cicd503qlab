@@ -78,12 +78,14 @@ jobs:
       - name: Build backend image
         run: |
           docker build \
+            --no-cache \
             -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/k8s-backend:${{ steps.meta.outputs.sha }} \
             ./app
 
       - name: Build frontend image
         run: |
           docker build \
+            --no-cache \
             -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/k8s-frontend:${{ steps.meta.outputs.sha }} \
             ./app/frontend
 
