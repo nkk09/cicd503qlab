@@ -29,11 +29,15 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22'
 
       - name: Install dependencies
         working-directory: ./app
         run: npm ci
+
+      - name: Security audit
+        working-directory: ./app
+        run: npm audit --audit-level=moderate || true
 
       - name: Run unit tests
         working-directory: ./app
